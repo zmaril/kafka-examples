@@ -1,6 +1,6 @@
 ---
 - name: Install kafka example
-  hosts: kafka-box
+  hosts: kafka
   user: ubuntu
   sudo: yes
   roles:

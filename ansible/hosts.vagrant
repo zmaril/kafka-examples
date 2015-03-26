@@ -1,1 +1,1 @@
-kafka-box  ansible_ssh_host=10.42.2.100 ansible_ssh_user=vagrant
+kafka  ansible_ssh_host=10.42.2.666 ansible_ssh_user=vagrant

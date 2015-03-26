@@ -14,10 +14,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.network :forwarded_port, guest: 22, host: SSH_PORT, auto_correct: true
 
     config.vm.define "kafka" do |kafka|
-        kafka.vm.network "private_network", ip: "10.42.2.100"
+        kafka.vm.network "private_network", ip: "10.42.2.105"
 
         kafka.vm.provider "virtualbox" do |v| 
-            v.name = "kafka-box"
+            v.name = "kafka"
         end
 
         kafka.vm.provision "ansible" do |ansible|
@@ -27,7 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             # needed for common tasks to avoid EBS & checkout over synced_folders
             ansible.extra_vars = { deploy_type: "vagrant" }
             # seems to avoid the delay with private IP not being available
-            ansible.verbose = 'vv'
+            ansible.verbose = 'v'
             ansible.raw_arguments = ["-T 30"]
         end
     end
