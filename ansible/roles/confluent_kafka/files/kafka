@@ -8,6 +8,18 @@ case "$1" in
         # Start daemon.
         echo "Starting $DAEMON_NAME";
         kafka-server-start -daemon /etc/kafka/server.properties
+        e=$?
+        if [ $e -eq 1 ]; then
+            echo "Kafka already running"
+            return
+        fi
+
+        if [ $e -eq 255 ]; then
+            echo "Kafka couldn't start"
+            exit 1
+        fi
+
+        echo "done"
         ;;
   stop)
         # Stop daemons.
@@ -32,6 +44,7 @@ case "$1" in
           echo "Kafka is Running as PID: $pid"
         else
           echo "Kafka is not Running"
+          exit 3
         fi
         ;;
   *)
