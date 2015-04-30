@@ -1,0 +1,11 @@
+---
+# Go python go
+- name: Install list of packages
+  apt: pkg={{item}} state=installed update_cache=yes
+  with_items:
+    - python-pip
+    
+- name: Install python-kafka
+  pip: name={{item}}
+  with_items:
+    - kafka-python

@@ -1,7 +1,25 @@
 ---
-- name: Install kafka example
+- name: install htop and update cache
+  hosts: all
+  user: ubuntu
+  sudo: yes
+  tasks:
+    - apt: name=htop update_cache=yes
+- name: python
+  hosts: python
+  user: ubuntu
+  sudo: yes
+  roles:
+    - role: python
+- name: kafka
   hosts: kafka
   user: ubuntu
   sudo: yes
   roles:
-    - role: confluent_kafka 
+    - role: kafka 
+- name: postgres
+  hosts: postgres
+  user: postgres
+  sudo: yes
+  roles:
+    - role: ANXS.postgresql

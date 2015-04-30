@@ -1,1 +1,4 @@
-kafka  ansible_ssh_host=10.42.2.105 ansible_ssh_user=vagrant
+python   ansible_ssh_host=10.42.2.105 ansible_ssh_user=vagrant
+kafka    ansible_ssh_host=10.42.2.106 ansible_ssh_user=vagrant
+postgres ansible_ssh_host=10.42.2.107 ansible_ssh_user=vagrant
+

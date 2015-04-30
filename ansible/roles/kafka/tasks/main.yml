@@ -22,7 +22,10 @@
     - zookeeperd
     
 - name: Install python-kafka
-  pip: name=kafka-python
+  pip: name={{item}}
+  with_items:
+    - kafka-python
+    - flask
 
 - name: Copy over kafka service script
   copy: src=kafka dest=/etc/init.d/kafka mode=777
@@ -33,4 +36,4 @@
 - name: Start kafka service
   service: name=kafka state=started 
   
-  
+
