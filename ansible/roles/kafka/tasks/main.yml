@@ -16,7 +16,7 @@
   with_items:
     - openjdk-7-jre
     - openjdk-7-jdk
-    - confluent-kafka-2.10.4
+    - confluent-platform-2.10.4
     - python-pip
     - zookeeper
     - zookeeperd
@@ -35,5 +35,19 @@
   
 - name: Start kafka service
   service: name=kafka state=started 
-  
 
+# Following modified from below:
+#  http://stackoverflow.com/questions/26104274/kafka-in-a-box-unable-to-send-messages-from-host
+- name: uncomment and set advertised.host.name
+  lineinfile: dest=/etc/kafka/server.properties 
+              regexp='^#advertised.host.name=<hostname routable by clients>'
+              insertafter='^#advertised.host.name=<hostname routable by clients>'
+              line='advertised.host.name=10.42.2.106'
+              state=present
+
+- name: uncomment and set advertised.port line
+  lineinfile: dest=/etc/kafka/server.properties 
+              regexp='^#advertised.port=<port accessible by clients>'
+              insertafter='^#advertised.port=<port accessible by clients>'
+              line='advertised.port=9092'
+              state=present

@@ -6,7 +6,7 @@
   tasks:
     - apt: name=htop update_cache=yes
 - name: python
-  hosts: python
+  hosts: all
   user: ubuntu
   sudo: yes
   roles:
