@@ -19,7 +19,9 @@
     - role: kafka 
 - name: postgres
   hosts: postgres
-  user: postgres
+  user: ubuntu
   sudo: yes
+  vars:
+    postgresql_version: 9.4
   roles:
     - role: ANXS.postgresql
