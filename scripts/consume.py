@@ -1,12 +1,12 @@
 from kafka import SimpleConsumer, KafkaClient
-import psycopg2 
+import psycopg2
 kafka = KafkaClient("10.42.2.106:9092")
-consumer = SimpleConsumer(kafka,"test-group","updates")
+consumer = SimpleConsumer(kafka, "test-group", "updates")
 
 conn = psycopg2.connect("dbname=postgres user=postgres")
 curs = conn.cursor()
 
-try:    
+try:
     curs.execute("CREATE TABLE props (id serial PRIMARY KEY, prop varchar(10))")
     conn.commit()
 except Exception:
@@ -19,7 +19,7 @@ try:
 except Exception:
     print "Test row already created, roll it on back'"
     conn.rollback()
-    
+
 kafka.ensure_topic_exists('updates')
 
 for om in consumer:
