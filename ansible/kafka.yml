@@ -1,0 +1,19 @@
+---
+- name: Install basics and python
+  user: vagrant
+  sudo: yes
+  hosts: kafka
+  tasks:
+    - apt: name=htop update_cache=yes
+  roles:
+    - role: python 
+      sudo: yes
+
+- name: Install kafka
+  user: vagrant
+  sudo: yes
+  hosts: kafka
+  roles:
+    - role: kafka
+      sudo: yes
+

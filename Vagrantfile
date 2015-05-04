@@ -23,14 +23,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         end
 
         python.vm.provision "ansible" do |ansible|
-            ansible.playbook = "ansible/site.yml"
+            ansible.playbook = "ansible/python.yml"
             ansible.inventory_path = "ansible/hosts.vagrant"
             ansible.limit = "all"
             # needed for common tasks to avoid EBS & checkout over synced_folders
             ansible.extra_vars = { deploy_type: "vagrant" }
             # seems to avoid the delay with private IP not being available
-            ansible.verbose = 'v'
+            ansible.verbose = 'vvvv'
             ansible.raw_arguments = ["-T 30"]
+            ansible.host_key_checking = false
         end
     end
 
@@ -42,14 +43,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         end
 
         kafka.vm.provision "ansible" do |ansible|
-            ansible.playbook = "ansible/site.yml"
+            ansible.playbook = "ansible/kafka.yml"
             ansible.inventory_path = "ansible/hosts.vagrant"
             ansible.limit = "all"
             # needed for common tasks to avoid EBS & checkout over synced_folders
             ansible.extra_vars = { deploy_type: "vagrant" }
             # seems to avoid the delay with private IP not being available
-            ansible.verbose = 'v'
+            ansible.verbose = 'vvvv'
             ansible.raw_arguments = ["-T 30"]
+            ansible.host_key_checking = false
         end
     end
 
@@ -61,14 +63,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         end
 
         postgres.vm.provision "ansible" do |ansible|
-            ansible.playbook = "ansible/site.yml"
+            ansible.playbook = "ansible/postgres.yml"
             ansible.inventory_path = "ansible/hosts.vagrant"
             ansible.limit = "all"
             # needed for common tasks to avoid EBS & checkout over synced_folders
             ansible.extra_vars = { deploy_type: "vagrant" }
             # seems to avoid the delay with private IP not being available
-            ansible.verbose = 'v'
+            ansible.verbose = 'vvvv'
             ansible.raw_arguments = ["-T 30"]
+            ansible.host_key_checking = false
         end
     end
 end

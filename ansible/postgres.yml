@@ -1,0 +1,21 @@
+---
+- name: Install basics and python
+  user: vagrant
+  sudo: yes
+  hosts: postgres
+  tasks:
+    - apt: name=htop update_cache=yes
+  roles:
+    - role: python 
+      sudo: yes
+
+- name: Install postgres
+  user: vagrant
+  sudo: yes
+  hosts: postgres
+  roles:
+    - role: ANXS.postgresql
+      sudo: yes
+      vars:
+        postgresql_version: 9.4
+

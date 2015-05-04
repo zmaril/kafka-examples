@@ -1,0 +1,10 @@
+---
+- name: Install basics and python
+  user: vagrant
+  sudo: yes
+  hosts: python
+  tasks:
+    - apt: name=htop update_cache=yes
+  roles:
+    - role: python 
+      sudo: yes
