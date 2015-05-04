@@ -12,6 +12,8 @@ box. `postgres` has a Postgres database running on it.
 
 # Go go go
 
+- Do `ansible-galaxy install ANXS.postgresql` to install the Postgres role for ansible. 
+
 - Run `vagrant up`. (Note: This might need to be run three times because of SSH
 problems and ansible being unable to find more than one virtualbox at a
 time). This takes time but at the end Kafka, Zookeeper and Postgres should be up
