@@ -8,7 +8,7 @@ curs = conn.cursor()
 
 try:    
     curs.execute("CREATE TABLE props (id serial PRIMARY KEY, prop varchar(10))")
-    curs.commit()
+    conn.commit()
 except Exception:
     print "Table already created, roll 'em on back'"
     conn.rollback()
